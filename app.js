@@ -11,34 +11,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-/*--------------------------MONGOOSE------------------------*/
-// set up default mongoose connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true});
-// get the default connection
+/* -------------------mongoose code----------------*/
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
-// bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-// define schema
-var Schema = mongoose.Schema;
-var librarySchema = new Schema(
-  {
-    name: String,
-    binary: Buffer,
-    living: Boolean,
-    updated: { type: Date, default: Date.now() },
-    age: { type: Number, min: 18, max: 65, required: true },
-    mixed: Schema.Types.Mixed,
-    _bookId: Schema.Types.ObjectId,
-    array: [],
-    ofString: [String],   // an array of strings
-    nested: { stuff}
-  }
-);
-
-/*--------------------------MONGOOSE------------------------*/
-
-
+/* -------------------mongoose code----------------*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views')); //perhaps you may try joining these two like so:
