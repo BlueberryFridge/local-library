@@ -1,3 +1,7 @@
+// arrow functions don't work on Schema methods
+// since arrow functions don't bind the 'this' keyword
+// as function expression does
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -13,7 +17,7 @@ var BookSchema = new Schema(
 
 // virtual for book's URL
 BookSchema.virtual('url')
-          .get( () => `/catalog/book/${this._id}`);
+          .get( function() {`/catalog/book/${this._id}`;} )
 
 // export model
 module.exports = mongoose.model('Book', BookSchema);

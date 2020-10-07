@@ -66,7 +66,7 @@ router.get('/genre/:id', genre_controller.genre_detail);
 // GET request for all Genres
 router.get('/genres', genre_controller.genre_list);
 
-//----------------------book routes----------------------//
+//----------------------bookinstance routes----------------------//
 
 // GET request for creating bookinstance
 router.get('/bookinstance/create', bookinstance_controller.bookinstance_create_get);

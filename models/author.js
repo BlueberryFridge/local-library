@@ -1,3 +1,7 @@
+// arrow functions don't work on Schema methods
+// since arrow functions don't bind the 'this' keyword
+// as function expression does
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -13,7 +17,7 @@ var AuthorSchema = new Schema(
 
 // virtual for author's full name
 AuthorSchema.virtual('name')
-            .get( () => {
+            .get(function() {
                 // to avoid errors in cases where an author doesn't have either a family or first name
                 // we want to make sure we handle the exception by returning an empty string for that case
                 var fullname = '';
@@ -28,15 +32,15 @@ AuthorSchema.virtual('name')
 
 // virtual for author's lifespan
 AuthorSchema.virtual('lifespan')
-            .get( () =>
-                (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString()
-            );
+            .get(function() {
+                (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString();
+            });
 
 // virtual for author's URL
 AuthorSchema.virtual('url')
-            .get( () => 
+            .get(function() {
                 `/catalog/author/${this._id}`
-            );
+            });
 
 // export model
 module.exports = mongoose.model('Author', AuthorSchema);
