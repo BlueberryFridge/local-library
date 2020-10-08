@@ -1,7 +1,7 @@
 const Author = require('../models/author');
 
 // Display list of all authors
-exports.author_list = (req, res) => {
+exports.author_list = (req, res, next) => {
     Author.find()
           .populate('author')
           .sort([['family_name', 'ascending']])

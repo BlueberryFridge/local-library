@@ -26,7 +26,7 @@ exports.index = (req, res) => {
 }
 
 // Display list of all Book
-exports.book_list = (req, res) => {
+exports.book_list = (req, res, next) => {
     Book.find({}, 'title author')   // selecting only title and author in the objects returned; these also include '_id' and virtual fields
         .populate('author')         // specifying 'author' field will replace stored book author id with full author details
         .exec( (err, list_books) => {
