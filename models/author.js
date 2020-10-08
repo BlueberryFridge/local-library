@@ -46,13 +46,13 @@ AuthorSchema.virtual('url')
 // virtual for date of birth
 AuthorSchema.virtual('date_of_birth_formatted')
             .get(function() {
-                return this.date_of_birth ? moment(this.date_of_birth).format('YYYY-MM-DD') : '';
+                return this.date_of_birth ? moment(this.date_of_birth).format('DD MMMM YYYY') : '';
             });
 
 // virtual for date of death
 AuthorSchema.virtual('date_of_date_formatted')
             .get(function() {
-                return this.date_of_death ? moment(this.date_of_death).format('YYYY-MM-DD') : '';
+                return this.date_of_death ? moment(this.date_of_death).format('DD MMMM YYYY') : '';
             });
 
 // export model
