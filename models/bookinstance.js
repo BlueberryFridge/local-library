@@ -8,6 +8,7 @@
 // expected back, and 'imprint' (or version) details
 
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 var Schema = mongoose.Schema;
 
@@ -23,6 +24,12 @@ var BookInstanceSchema = new Schema(
 // virtual for bookinstance's URL
 BookInstanceSchema.virtual('url')
                   .get( function() {`/catalog/bookinstance/${this._id}`;} );
+
+// virtual for date due
+BookInstanceSchema.virtual('due_back_formatted')
+                  .get(function() {
+                      return moment(this.due_back).format('Do MMMM  YYYY');
+                  });
 
 // export model
 module.exports = mongoose.model('BookInstance', BookInstanceSchema);
