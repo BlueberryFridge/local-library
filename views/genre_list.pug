@@ -6,6 +6,6 @@ block content
     ul
         each genre in genre_list
             li
-                a #{genre.name}
+                a(href=genre.url) #{genre.name}
         else
             li There are no genres to be had.

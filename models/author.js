@@ -34,13 +34,13 @@ AuthorSchema.virtual('name')
 // virtual for author's lifespan
 AuthorSchema.virtual('lifespan')
             .get(function() {
-                (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString();
+                return (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString();
             });
 
 // virtual for author's URL
 AuthorSchema.virtual('url')
             .get(function() {
-                `/catalog/author/${this._id}`
+                return `/catalog/author/${this._id}`
             });
 
 // virtual for date of birth
