@@ -45,7 +45,7 @@ exports.genre_create_get = (req, res, next) => {
 // i.e., validator is a middleware
 exports.genre_create_post = [
     // validate and sanitise the name field
-    body('name', 'Genre name required').isLength({ min: 1 }).trim().escape(),
+    body('name', 'Genre name required').isLength({ min: 1 }).trim().escape(),           
     // process request after validation and sanitisation
     (req, res, next) => {
         // extract validation errors from request
